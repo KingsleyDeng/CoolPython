@@ -1,6 +1,6 @@
 from random import randrange
 
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 
 from pyecharts import options as opts
 from pyecharts.charts import Bar
@@ -15,7 +15,7 @@ def bar_base() -> Bar:
             .add_xaxis(["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"])
             .add_yaxis("商家A", [randrange(0, 100) for _ in range(6)])
             .add_yaxis("商家B", [randrange(0, 100) for _ in range(6)])
-            .set_global_opts(title_opts=opts.TitleOpts(title="Bar-基本示例", subtitle="我是副标题"))
+            .set_global_opts(title_opts=opts.TitleOpts(title="Kingsley", subtitle="示例图"))
     )
     return c
 
@@ -49,18 +49,22 @@ def line_base() -> Line:
     )
     return line
 
+
 @app.route("/lineChart")
 def get_line_chart():
     c = line_base()
     return c.dump_options_with_quotes()
 
+
 idx = 9
+
 
 @app.route("/lineDynamicData")
 def update_line_data():
     global idx
     idx = idx + 1
     return jsonify({"name": idx, "value": randrange(50, 80)})
+
 
 if __name__ == "__main__":
     app.run(debug=True)

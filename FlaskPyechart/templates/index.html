@@ -9,21 +9,21 @@
 <body>
     <div id="bar" style="width:1000px; height:600px;"></div>
 <!--    前后端分离-->
-<!--    <script>-->
-<!--        $(-->
-<!--            function () {-->
-<!--                var chart = echarts.init(document.getElementById('bar'), 'white', {renderer: 'canvas'});-->
-<!--                $.ajax({-->
-<!--                    type: "GET",-->
-<!--                    url: "http://127.0.0.1:5000/barChart",-->
-<!--                    dataType: 'json',-->
-<!--                    success: function (result) {-->
-<!--                        chart.setOption(result);-->
-<!--                    }-->
-<!--                });-->
-<!--            }-->
-<!--        )-->
-<!--    </script>-->
+    <script>
+        $(
+            function () {
+                var chart = echarts.init(document.getElementById('bar'), 'white', {renderer: 'canvas'});
+                $.ajax({
+                    type: "GET",
+                    url: "http://127.0.0.1:5000/barChart",
+                    dataType: 'json',
+                    success: function (result) {
+                        chart.setOption(result);
+                    }
+                });
+            }
+        )
+    </script>
 <!--    定时全量更新图标-->
 <!--    <script>-->
 <!--        var chart = echarts.init(document.getElementById('bar'), 'white', {renderer: 'canvas'});-->
@@ -46,42 +46,42 @@
 <!--            });-->
 <!--        }-->
 <!--    </script>-->
-    <script>
-        var chart = echarts.init(document.getElementById('bar'), 'white', {renderer: 'canvas'});
-        var old_data = [];
-        $(
-            function () {
-                fetchData(chart);
-                setInterval(getDynamicData, 2000);
-            }
-        );
+<!--    定时增量更新图表-->
+<!--    <script>-->
+<!--        var chart = echarts.init(document.getElementById('bar'), 'white', {renderer: 'canvas'});-->
+<!--        var old_data = [];-->
+<!--        $(-->
+<!--            function () {-->
+<!--                fetchData(chart);-->
+<!--                setInterval(getDynamicData, 2000);-->
+<!--            }-->
+<!--        );-->
 
-        function fetchData() {
-            $.ajax({
-                type: "GET",
-                url: "http://127.0.0.1:5000/lineChart",
-                dataType: "json",
-                success: function (result) {
-                    chart.setOption(result);
-                    old_data = chart.getOption().series[0].data;
-                }
-            });
-        }
+<!--        function fetchData() {-->
+<!--            $.ajax({-->
+<!--                type: "GET",-->
+<!--                url: "http://127.0.0.1:5000/lineChart",-->
+<!--                dataType: "json",-->
+<!--                success: function (result) {-->
+<!--                    chart.setOption(result);-->
+<!--                    old_data = chart.getOption().series[0].data;-->
+<!--                }-->
+<!--            });-->
+<!--        }-->
 
-        function getDynamicData() {
-            $.ajax({
-                type: "GET",
-                url: "http://127.0.0.1:5000/lineDynamicData",
-                dataType: "json",
-                success: function (result) {
-                    old_data.push([result.name, result.value]);
-                    chart.setOption({
-                        series: [{data: old_data}]
-                    });
-                }
-            });
-        }
-
-    </script>
+<!--        function getDynamicData() {-->
+<!--            $.ajax({-->
+<!--                type: "GET",-->
+<!--                url: "http://127.0.0.1:5000/lineDynamicData",-->
+<!--                dataType: "json",-->
+<!--                success: function (result) {-->
+<!--                    old_data.push([result.name, result.value]);-->
+<!--                    chart.setOption({-->
+<!--                        series: [{data: old_data}]-->
+<!--                    });-->
+<!--                }-->
+<!--            });-->
+<!--        }-->
+<!--    </script>-->
 </body>
 </html>
