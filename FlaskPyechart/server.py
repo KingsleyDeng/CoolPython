@@ -26,7 +26,7 @@ def bar_base(names, subtitles) -> Bar:
 @app.route("/")
 def index():
     data = request.args.to_dict()
-    return render_template("indexs.html", result_json=data)
+    return render_template("indexs.html", data=data)
 
 
 @app.route("/barChart")

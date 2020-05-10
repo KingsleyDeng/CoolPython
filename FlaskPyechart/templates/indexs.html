@@ -12,7 +12,7 @@
     <script>
       $(
         function () {
-            var result_json = '{{ result_json|tojson }}';
+            var result_json = '{{ data|tojson }}';
             // var result = JSON.parse(result_json);
             var chart = echarts.init(document.getElementById('bar'), 'gray', {renderer: 'canvas'});
             $.ajax({

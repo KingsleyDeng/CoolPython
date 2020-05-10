@@ -7,7 +7,9 @@ from selenium.webdriver.support.wait import WebDriverWait
 from urllib.parse import quote
 from pyquery import PyQuery as pq
 
-browser = webdriver.Chrome()
+chrome_driver = r"F:\PythonWorkStation\venv\Lib\site-packages\selenium\webdriver\chrome\chromedriver.exe"
+
+browser = webdriver.Chrome(executable_path=chrome_driver)
 wait = WebDriverWait(browser, 10)
 KEYWORD = 'Python'
 
