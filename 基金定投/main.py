@@ -4,7 +4,7 @@ from datetime import datetime
 import matplotlib.pyplot as plt
 
 money = 100
-fundCode = '005827'  #基金代码
+fundCode = '001553'  #基金代码
 pageIndex = 1
 startDate = '2018-08-21'  #起始时间
 endDate = '2020-04-20'   #截止时间

@@ -1,4 +1,5 @@
 from selenium import webdriver
+
 chrome_driver = r"F:\PythonWorkStation\venv\Lib\site-packages\selenium\webdriver\chrome\chromedriver.exe"
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -13,7 +14,6 @@ sheet.title = '公众号推文'
 header = ['标题', '时间', '链接']
 sheet.append(header)
 
-
 driver = webdriver.Chrome(executable_path=chrome_driver)
 driver.get('https://weixin.sogou.com/')
 wait = WebDriverWait(driver, 10)
@@ -22,6 +22,7 @@ input.send_keys('凹凸数据')
 driver.find_element_by_xpath("//input[@class='swz']").click()
 
 num = 0
+
 
 def get_news():
     global num
@@ -50,6 +51,7 @@ def get_news():
         row = [title, date, url]
         sheet.append(row)
 
+
 for i in range(10):
     get_news()
     if i == 9:
@@ -73,7 +75,6 @@ while True:
         driver.find_element_by_id("sogou_next").click()
     except:
         break
-
 
 driver.quit()
 
